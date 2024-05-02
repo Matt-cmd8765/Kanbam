@@ -65,3 +65,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "devise", "~> 4.9"
+gem 'bootstrap', '~> 5.3.3'
+# For bootstrap
+gem 'dartsass-sprockets'
