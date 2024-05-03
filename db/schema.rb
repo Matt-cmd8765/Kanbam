@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_02_122248) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_03_074856) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "kanban_boards", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "kanban_columns", force: :cascade do |t|
+    t.string "name"
+    t.bigint "kanban_board_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["kanban_board_id"], name: "index_kanban_columns_on_kanban_board_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,4 +40,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_02_122248) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "kanban_columns", "kanban_boards"
 end
