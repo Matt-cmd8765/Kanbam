@@ -1,3 +1,4 @@
 class KanbanBoard < ApplicationRecord
-	has_many :kanban_columns
+	belongs_to :user
+  has_many :kanban_columns
 end
