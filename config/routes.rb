@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'kanban_board/index'
+  get 'kanban_board/new'
+  get 'kanban_board/create'
   devise_for :users, controllers: { sessions: 'users/sessions' }  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   
@@ -8,5 +11,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  root to: 'home#index'
+  root to: 'kanban_board#index'
 end
