@@ -15,11 +15,20 @@
     padding: 16px;
   }
   .kanban-col-item {
-    background-color: grey;
+    background-color: rgb(235, 228, 228);
     margin-bottom: 4px;
     padding: 16px;
     cursor: grab;
   }
   .kanban-col-item:active {
     cursor: grabbing;
+  }
+
+  body {
+    margin: 10px;
+  }
+  
+  .glyphicon-move {
+    cursor: move;
+    cursor: -webkit-grabbing;
   }

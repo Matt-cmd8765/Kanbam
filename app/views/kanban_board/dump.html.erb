@@ -1,0 +1,15 @@
+<% @boards.each do |board| %>
+    <% board.kanban_columns.each do |column| %>
+        <ul>
+            <li><%=column.name%></li>
+        </ul>
+        <% column.cards.each do |card| %>
+        <ul>
+            <li><%=card.name%></li>
+            <li><%=card.start_date%></li>
+            <li><%=card.end_date%></li>
+            <li><%=card.due_date%></li>
+        </ul>
+        <% end %>
+    <% end %>
+<% end %> 
