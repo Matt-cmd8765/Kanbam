@@ -9,7 +9,8 @@ export default class extends Controller {
       ulElements.forEach((ul) => {
         new Sortable(ul, {
             group: 'kanban', // set both lists to same group
-            animation: 300
+            animation: 300,
+            onEnd: this.onEnd.bind(this)
         });
       });
     };
@@ -18,5 +19,9 @@ export default class extends Controller {
     if (kanbanUls) {
       initKanbanSortable(kanbanUls);
       };
+  }
+
+  onEnd(event) {
+    console.log(event.newIndex)
   }
 }

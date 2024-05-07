@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_03_132443) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_07_110623) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_132443) do
     t.bigint "kanban_column_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "row_order"
     t.index ["kanban_column_id"], name: "index_cards_on_kanban_column_id"
   end
 
@@ -38,6 +39,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_132443) do
     t.bigint "kanban_board_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "row_order"
     t.index ["kanban_board_id"], name: "index_kanban_columns_on_kanban_board_id"
   end
 
