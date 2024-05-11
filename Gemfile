@@ -72,3 +72,4 @@ gem 'bootstrap', '~> 5.3.3'
 gem 'dartsass-sprockets'
 gem 'sortablejs-rails'
 gem "ranked-model", "~> 0.4.9"
+gem 'requestjs-rails'
