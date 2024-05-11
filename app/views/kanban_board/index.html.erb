@@ -19,7 +19,7 @@
         <ul class="kanban-col" data-col-id=<%= column.id %> >
         <div class="kanban-col-name"><%= column.name %></div>
         <% column.cards.rank(:row_order).each do |item| %>
-            <li class="kanban-col-item"><%= item.name %></li>
+            <li class="kanban-col-item" data-sortable-id="<%= item.id %>">Item ID: <%=item.id%> <%= item.name %></li>
         <% end %>
         </ul>
     <% end %>

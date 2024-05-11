@@ -22,6 +22,7 @@ export default class extends Controller {
   }
 
   onEnd(event) {
-    console.log(event.newIndex)
+    console.log(event.item.dataset.sortableId)
+    // console.log(event.newIndex)
   }
 }
