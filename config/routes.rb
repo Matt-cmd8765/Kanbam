@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'kanban_board/index'
   get 'kanban_board/new'
   get 'kanban_board/create'
-  resources :kanban_board do
+  resources :kanban_column do
     member do
       put :sort
     end

@@ -1,9 +1,9 @@
 class KanbanBoardController < ApplicationController
   def index
     @user = User.find(current_user.id)
-    @boards = @user.kanban_boards.all
-    @columns = KanbanColumn.all
-    # @cards = Card.rank(:row_order)
+    # Only selecting first board. NEED TO CHANGE LATER
+    @board = @user.kanban_boards.first
+    @columns = @board.kanban_columns.all
   end
 
   def sort
