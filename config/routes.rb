@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   get 'kanban_board/index'
   get 'kanban_board/new'
   get 'kanban_board/create'
+  resources :kanban_board do
+    member do
+      put :sort
+    end
+  end
   devise_for :users, controllers: { sessions: 'users/sessions' }  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   

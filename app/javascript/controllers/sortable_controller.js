@@ -2,29 +2,20 @@ import { Controller } from "@hotwired/stimulus"
 import Sortable from 'sortablejs';
 import { put } from '@rails/request.js'
 
-
 // Connects to data-controller="sortable"
 export default class extends Controller {
   connect() {
-    //Sortable.create(this.element, { /* options */ });
-    const initKanbanSortable = (ulElements) => {
-      ulElements.forEach((ul) => {
-        new Sortable(ul, {
-            group: 'kanban', // set both lists to same group
-            animation: 300,
-            onEnd: this.onEnd.bind(this)
-        });
-      });
-    };
-
-    const kanbanUls = document.querySelectorAll(".kanban .kanban-col");
-    if (kanbanUls) {
-      initKanbanSortable(kanbanUls);
-      };
+    Sortable.create(this.element, {
+      onEnd: this.onEnd.bind(this),
+      animation: 300
+    });
   }
 
   onEnd(event) {
-    console.log(event.item.dataset.sortableId)
-    // console.log(event.newIndex)
+    console.log("sortableID", event.item.dataset.sortableId)
+    console.log("NewIndex", event.newIndex)
+    put(`/kanban_board/${event.item.dataset.sortableId}/sort`, {
+      body: JSON.stringify({row_order_position: event.newIndex})
+    })
   }
 }
