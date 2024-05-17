@@ -6,14 +6,6 @@ class KanbanBoardController < ApplicationController
     @columns = @board.kanban_columns.all
   end
 
-  def sort
-    @card = Card.find(params[:id])
-    @card.update(row_order_position: params[:row_order_position])
-    head :no_content
-    # @roworder = params[:row_order_position]
-    # debugger
-  end
-
   def new
   end
 
