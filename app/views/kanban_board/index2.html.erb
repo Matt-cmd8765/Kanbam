@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag "kanban_board", "data-turbo-track": "reload" %>
+    <title>Document</title>
+</head>
+<body>
+    <% if user_signed_in? %> 
+    <div> Welcome number: <%= current_user.id %> Please enjoy</div> 
+        <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+    <% else %>
+        <%= button_to "Sign in", new_user_session_path %> 
+    <% end %>
+
+<div class="kanban" data-id="<%= @boards.first.id %>">
+    <% @boards.first.kanban_columns.rank(:row_order).each do |column| %>
+        <ul class="kanban-col" data-controller="sortable" data-sortable-id="<%= column.id %>">
+            <% column.cards.rank(:row_order).each do |item| %>
+                <li class="kanban-col-item" data-sortable-id="<%= item.id %>"><%= item.name %> <%= item.row_order%> </li>
+            <% end %>
+        </ul>
+    <% end %>
+</div>
+
+</body>
+</html>
+
+

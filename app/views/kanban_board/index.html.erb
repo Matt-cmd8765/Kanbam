@@ -16,11 +16,18 @@
 
 <div data-controller="sortable">
     <% @columns.rank(:row_order).each do | column |%>
-    <ul data-sortable-id="<%= column.id %>">
-        <li>
-            <%= column.name%>
-        </li>
-    </ul>
+        <ul data-sortable-id="<%= column.id %>">
+            <li>
+                <%=column.name%>
+                <ul>
+                    <%column.cards.each do |card|%>
+                <li>
+                    <%= card.name%>
+                </li>
+                    <% end %>
+                </ul>
+            </li>
+        </ul>
     <% end %>
 </div>
 
