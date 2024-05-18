@@ -12,9 +12,11 @@ export default class extends Controller {
   }
 
   onEnd(event) {
-    // console.log("sortableID", event.item.dataset.sortableId)
+    let sortableUpdateUrl = event.item.dataset.sortableUpdateUrl
+    console.log(sortableUpdateUrl)
     // console.log("NewIndex", event.newIndex)
-    put(`/kanban_column/${event.item.dataset.sortableId}/sort`, {
+
+    put(sortableUpdateUrl, {
       body: JSON.stringify({row_order_position: event.newIndex})
     })
   }

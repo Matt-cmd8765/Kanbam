@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   get 'kanban_board/index'
   get 'kanban_board/new'
   get 'kanban_board/create'
+  resources :card do
+    member do
+      put :sort
+    end
+  end
   resources :kanban_column do
     member do
       put :sort

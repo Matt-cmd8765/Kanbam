@@ -14,14 +14,14 @@
     <% end %>
 
 <div data-controller="sortable">
-	<% @columns.rank(:row_order).each do | column |%>
-		<ul data-sortable-id="<%= column.id %>">
+	<% @columns.rank(:row_order).each do | column | %>
+		<ul data-sortable-update-url="<%= sort_kanban_column_path(column) %>">
 			<li>
-				<%=column.name%>
-				<ul>
-					<%column.cards.each do |card|%>
-					<li>
-							<%= card.name%>
+				<%=column.name %>
+				<ul data-controller="sortable">
+					<% column.cards.rank(:row_order).each do |card| %>
+					<li data-sortable-update-url="<%= sort_card_path(card) %>">
+						<%= card.name %>
 					</li>
 					<% end %>
 				</ul>
