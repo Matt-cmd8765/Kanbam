@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Boards</title>
+</head>
+<body>
+<% if user_signed_in? %> 
+<div> Welcome number: <%= current_user.id %> Please enjoy</div> 
+  <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+<% else %>
+  <%= button_to "Sign in", new_user_session_path %> 
+<% end %>
+
+<div data-controller="sortable" style='display: flex'>
+	<% @columns.rank(:row_order).each do | column | %>
+		<ul data-sortable-update-url="<%= sort_kanban_column_path(column) %>"style='border: solid'>
+			<li style='width: 200px'>
+				<%=column.name %>
+				<ul data-controller="sortable" data-sortable-group-value="cards" data-sortable-column-id="<%=column.id%>">
+					<% column.cards.rank(:row_order).each do |card| %>
+					<li data-sortable-update-url="<%= sort_card_path(card) %>">
+						<%= card.name %>
+					</li>
+					<% end %>
+				</ul>
+			</li>
+		</ul>
+	<% end %>
+</div>
+</html>
+

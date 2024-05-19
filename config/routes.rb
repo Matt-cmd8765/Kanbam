@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: 'users/sessions' }  
-  get 'kanban_board/index'
-  get 'kanban_board/new'
-  get 'kanban_board/create'
+
+  # For Devise
+  devise_for :users, controllers: { sessions: 'users/sessions' }
+
+  resources :kanban_board
+
+  # Card resources set up this way to get to sort function. From Supe Rails youtube
   resources :card do
     member do
       put :sort
     end
   end
+
+  # Caolumn resources set up this way to get to sort function. From Supe Rails youtube
   resources :kanban_column do
     member do
       put :sort

@@ -1,12 +1,12 @@
 class KanbanBoardController < ApplicationController
   def index
-    @user = User.find(current_user.id)
-    # Only selecting first board. NEED TO CHANGE LATER
-    @board = @user.kanban_boards.first
-    @columns = @board.kanban_columns.all
+    @user = current_user
+    @boards = @user.kanban_boards.all
   end
 
-  def new
+  def show
+    board = KanbanBoard.find(params[:id])
+    @columns = board.kanban_columns.all
   end
 
   def create
