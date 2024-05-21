@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # For Devise
   devise_for :users, controllers: { sessions: 'users/sessions' }
 
-  resources :kanban_board
+  resources :kanban_boards
 
   # Card resources set up this way to get to sort function. From Supe Rails youtube
   resources :card do
@@ -26,5 +26,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  root to: 'kanban_board#index'
+  root to: 'kanban_boards#index'
 end
