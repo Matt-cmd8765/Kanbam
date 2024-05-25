@@ -1,4 +1,5 @@
 <%= form_with(model: board) do |form| %>
+  <%# Error message for board %>
   <% if board.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(board.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -9,13 +10,16 @@
       </ul>
     </div>
   <% end %>
-  <%= current_user.id %>
   <div>
-    <%= form.label :name, style: "display: block" %>
+    <%= form.label 'Board Name', style: "display: block" %>
     <%= form.text_field :name %>
 
     <%= form.hidden_field :user_id, :value => current_user.id %>
   </div>
-
-  <%= form.submit %>
+  <%= form.fields_for :kanban_columns do |sub_form| %>
+    <%= sub_form.label 'Column Name', style: "display: block" %>
+    <%= sub_form.text_field :name %>
+  <% end %>
+  <br>
+  <%= form.submit 'Create!'%>
 <% end %>

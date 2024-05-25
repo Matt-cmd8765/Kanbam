@@ -13,6 +13,7 @@
   <%= button_to "Sign in", new_user_session_path %> 
 <% end %>
 
+<%# Actual kanban board %>
 <div data-controller="sortable" style='display: flex'>
 	<% @columns.rank(:row_order).each do | column | %>
 		<ul data-sortable-update-url="<%= sort_kanban_column_path(column) %>"style='border: solid'>

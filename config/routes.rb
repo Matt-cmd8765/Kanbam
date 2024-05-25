@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   # Caolumn resources set up this way to get to sort function. From Supe Rails youtube
-  resources :kanban_column do
+  resources :kanban_columns do
     member do
       put :sort
     end

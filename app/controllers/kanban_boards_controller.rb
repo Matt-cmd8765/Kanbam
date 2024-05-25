@@ -7,15 +7,17 @@ class KanbanBoardsController < ApplicationController
   def show
     board = KanbanBoard.find(params[:id])
     @columns = board.kanban_columns.all
+    @board_id = params[:id]
   end
 
   def new
     @board = KanbanBoard.new
+    @board.kanban_columns.build
   end
 
   def create
     @board = KanbanBoard.new(kanban_board_params)
-
+    
     respond_to do |format|
       if @board.save
         format.html { redirect_to kanban_board_url(@board), notice: "Board was successfully created." }
@@ -30,7 +32,7 @@ class KanbanBoardsController < ApplicationController
   private
 
   def kanban_board_params
-    params.require(:kanban_board).permit(:name, :user_id)
+    params.require(:kanban_board).permit(:name, :user_id, kanban_columns_attributes: [:name])
   end
 
 # class end
