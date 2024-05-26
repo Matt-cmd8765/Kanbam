@@ -1,25 +1,40 @@
-<%= form_with(model: board) do |form| %>
-  <%# Error message for board %>
-  <% if board.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(board.errors.count, "error") %> prohibited this event from being saved:</h2>
-      <ul>
-        <% board.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div>
-    <%= form.label 'Board Name', style: "display: block" %>
-    <%= form.text_field :name %>
+<div data-controller="form">
+  <%= form_with(model: board) do |form| %>
+    <%# Error message for board %>
+    <% if board.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(board.errors.count, "error") %> prohibited this event from being saved:</h2>
+        <ul>
+          <% board.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+      <div>
+        <%= form.label 'Board Name', style: "display: block" %>
+        <%= form.text_field :name %>
+        <%= form.hidden_field :user_id, :value => current_user.id %>
+      </div>
+        <%= form.fields_for :kanban_columns do |sub_form| %>
+          <%= sub_form.label 'Column Name', style: "display: block" %>
+          <%= sub_form.text_field :name %>
 
-    <%= form.hidden_field :user_id, :value => current_user.id %>
-  </div>
-  <%= form.fields_for :kanban_columns do |sub_form| %>
-    <%= sub_form.label 'Column Name', style: "display: block" %>
-    <%= sub_form.text_field :name %>
+          <template id= "template">
+            <div id='chillum'>
+              <%= sub_form.label 'Column Name', style: "display: block" %>
+              <%= sub_form.text_field :name %>
+            </div>
+          </template>
+          <div id="extra"></div>
+        <% end %>
+    <br>
+    <%= form.submit 'Create!'%>
   <% end %>
-  <br>
-  <%= form.submit 'Create!'%>
-<% end %>
+  <div class="buttons">
+    <button data-action="form#add" class='btn btn-primary'>Add a Column</button>
+    <button data-action="form#remove" class='btn btn-primary'>Remove Column</button>
+  </div>
+</div>
+
+  
