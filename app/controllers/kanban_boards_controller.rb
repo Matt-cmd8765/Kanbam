@@ -29,6 +29,16 @@ class KanbanBoardsController < ApplicationController
     end
   end
 
+  def destroy
+    @board = KanbanBoard.find(params[:id])
+    @board.destroy!
+
+    respond_to do |format|
+      format.html { redirect_to kanban_boards_url, notice: "Board was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   def kanban_board_params

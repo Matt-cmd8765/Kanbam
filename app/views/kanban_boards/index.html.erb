@@ -6,6 +6,7 @@
   <title>Home Page</title>
 </head>
 <body>
+  <%= notice %>
   <% if user_signed_in? %> 
     <div> Welcome number: <%= current_user.id %> Please enjoy</div> 
       <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 

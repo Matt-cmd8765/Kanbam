@@ -14,14 +14,12 @@
     </div>
   <% end %>
 
-
   <%# This is where the board name is entered %>
   <%= f.label 'Board Name', style: "display: block" %>
   <%= f.text_field :name %>
   <%= f.hidden_field :user_id, :value => current_user.id %>
-  <br>
-  <%# From the youtube vid %>
 
+  <%# Options for user to add columns %>
   <template data-nested-form-target="template">
     <%= f.fields_for :kanban_columns, KanbanColumn.new, child_index: 'NEW_RECORD' do |columns| %>
       <%= render "column_form", f: columns %>
@@ -34,7 +32,7 @@
   <div data-nested-form-target="target"></div>
   <button type="button" data-action="nested-form#add">Add Column</button>
 
-  <%# end of youtube vid %>
+  <%# end of column addition %>
 
   <br>
 
