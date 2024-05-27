@@ -6,6 +6,8 @@
     <title>Your Boards</title>
 </head>
 <body>
+
+  <%= notice %>
 <% if user_signed_in? %> 
 <div> Welcome number: <%= current_user.id %> Please enjoy</div> 
   <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
@@ -14,6 +16,9 @@
 <% end %>
 
 <%# Actual kanban board %>
+
+<h1><%= @board.name %></h1>
+
 <div data-controller="sortable" style='display: flex'>
 	<% @columns.rank(:row_order).each do | column | %>
 		<ul data-sortable-update-url="<%= sort_kanban_column_path(column) %>"style='border: solid'>

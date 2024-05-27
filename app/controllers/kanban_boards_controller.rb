@@ -5,8 +5,8 @@ class KanbanBoardsController < ApplicationController
   end
 
   def show
-    board = KanbanBoard.find(params[:id])
-    @columns = board.kanban_columns.all
+    @board = KanbanBoard.find(params[:id])
+    @columns = @board.kanban_columns.all
     @board_id = params[:id]
   end
 
@@ -32,7 +32,7 @@ class KanbanBoardsController < ApplicationController
   private
 
   def kanban_board_params
-    params.require(:kanban_board).permit(:name, :user_id, kanban_columns_attributes: [:name])
+    params.require(:kanban_board).permit(:name, :user_id, kanban_columns_attributes: [:name, :_destroy])
   end
 
 # class end
