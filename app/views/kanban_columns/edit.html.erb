@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Create Card</h1>
+  <%= form_with(model: @column) do |column| %>
+    <%= column.fields_for :cards do |card|%>
+      <%= card.label 'Name', style: "display: block" %>
+      <%= card.text_field :name %>
+      <%= card.label 'Start', style: "display: block" %>
+      <%= card.date_field :start_date %>
+      <%= card.label 'End', style: "display: block" %>
+      <%= card.date_field :end_date %>
+      <%= card.label 'Due', style: "display: block" %>
+      <%= card.date_field :due_date %>
+      <%= card.hidden_field :kanban_column_id, :value => @column.id %>
+    <% end %>
+    <%= column.submit 'Create Card' %>
+  <% end %>
+</body>
+</html>
