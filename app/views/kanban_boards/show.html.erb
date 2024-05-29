@@ -29,7 +29,7 @@
           <ul data-controller="sortable" data-sortable-group-value="cards" data-sortable-column-id="<%=column.id%>">
             <% column.cards.rank(:row_order).each do |card| %>
             <li data-sortable-update-url="<%= sort_card_path(card) %>">
-              <%= card.name %>
+              <%= link_to "#{card.name}", card %>
             </li>
             <% end %>
           </ul>
