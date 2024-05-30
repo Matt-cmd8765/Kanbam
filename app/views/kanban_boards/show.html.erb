@@ -38,6 +38,9 @@
     <% end %>
   </div>
   
+  <br>
+  <%= link_to "Add Column", edit_kanban_board_path(@board) %>
+
   <%= button_to "Destroy this Board", @board, method: :delete %>
   <br>
   <%= link_to 'Home', kanban_boards_path%>

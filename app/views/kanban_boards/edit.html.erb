@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <%= form_with(model: @board) do |board| %>
+    <%= board.fields_for :kanban_columns, KanbanColumn.new do |column|%>
+      <%= column.label 'Column Name' %>
+      <%= column.text_field :name %>
+      <%= column.hidden_field :kanban_board_id, :value => @board.id %>
+    <% end %>
+  <%= board.submit 'Create Column' %>
+  <% end %>
+</body>
+</html>

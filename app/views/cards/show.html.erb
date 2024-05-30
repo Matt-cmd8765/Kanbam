@@ -8,11 +8,11 @@
 <body>
   <h1>Card Info</h1>
   <ul>
-    <li><%= @card.name %></li>
-    <li><%= @card.start_date %></li>
-    <li><%= @card.due_date %></li>
+    <li>Card Name: <%= @card.name %></li>
+    <li>Start Date: <%= @card.start_date %></li>
+    <li>Due Date: <%= @card.due_date %></li>
   </ul>
-   
+   s
   <%= button_to "Destroy this Card", @card, method: :delete %>
 
 </body>
