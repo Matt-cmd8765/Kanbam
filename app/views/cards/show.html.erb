@@ -12,6 +12,8 @@
     <li><%= @card.start_date %></li>
     <li><%= @card.due_date %></li>
   </ul>
-  
+   
+  <%= button_to "Destroy this Card", @card, method: :delete %>
+
 </body>
 </html>

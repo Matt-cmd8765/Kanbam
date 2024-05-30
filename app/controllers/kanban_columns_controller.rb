@@ -25,6 +25,18 @@ class KanbanColumnsController < ApplicationController
     end
   end
 
+  # WIP 
+  def destroy
+    @column = KanbanColumn.find(params[:id])
+    @column.destroy!
+    board = KanbanBoard.find(params[:id])
+
+    respond_to do |format|
+      format.html { redirect_to kanban_board_path(board), notice: "Column was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   # Currently only makes cards, may need to update it eventually
