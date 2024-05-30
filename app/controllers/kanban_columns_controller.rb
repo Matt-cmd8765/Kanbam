@@ -25,7 +25,6 @@ class KanbanColumnsController < ApplicationController
     end
   end
 
-  # WIP 
   def destroy
     @column = KanbanColumn.find(params[:id])
     @column.destroy!

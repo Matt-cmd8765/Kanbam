@@ -32,16 +32,15 @@
             <% end %>
           </ul>
         </li>
+        <%= link_to "Create Card", edit_kanban_column_path(column) %>
+        <%= button_to "Destroy this Column", kanban_column_path(column), method: :delete %>
       </ul>
-
-    <%= link_to "Create Card", edit_kanban_column_path(column) %>
-
-    <%= button_to "Destroy this Column", kanban_column_path(column), method: :delete %>
     <% end %>
   </div>
   
   <%= button_to "Destroy this Board", @board, method: :delete %>
-
+  <br>
+  <%= link_to 'Home', kanban_boards_path%>
 </body>
 </html>
 

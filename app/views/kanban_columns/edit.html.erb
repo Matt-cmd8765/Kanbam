@@ -8,7 +8,7 @@
 <body>
   <h1>Create Card</h1>
   <%= form_with(model: @column) do |column| %>
-    <%= column.fields_for :cards do |card|%>
+    <%= column.fields_for :cards, Card.new do |card|%>
       <%= card.label 'Name', style: "display: block" %>
       <%= card.text_field :name %>
       <%= card.label 'Start', style: "display: block" %>
