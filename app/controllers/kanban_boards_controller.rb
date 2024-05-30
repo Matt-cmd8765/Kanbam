@@ -40,18 +40,18 @@ class KanbanBoardsController < ApplicationController
   end
 
   def edit
-    @board = KanbanBoard.find(params[:id])    
+    @board = KanbanBoard.find(params[:id])
   end
 
   def update
     @board = KanbanBoard.find(params[:id])
     respond_to do |format|
       if @board.update(kanban_update_column_params)
-        format.html { redirect_to kanban_board_url(@board.id), notice: "Column was successfully created." }
-        format.json { render :show, status: :ok, location: @column }
+        format.html { redirect_to kanban_board_url(@board.id), notice: "Board was successfully updated." }
+        format.json { render :show, status: :ok, location: @board }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @column.errors, status: :unprocessable_entity }
+        format.json { render json: @board.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -63,7 +63,7 @@ class KanbanBoardsController < ApplicationController
   end
 
   def kanban_update_column_params
-    params.require(:kanban_board).permit(kanban_columns_attributes: [:name, :kanban_board_id, :_destroy])
+    params.require(:kanban_board).permit(:name, kanban_columns_attributes: [:name, :kanban_board_id, :_destroy])
   end
 
 # class end

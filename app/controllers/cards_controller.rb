@@ -1,5 +1,11 @@
 class CardsController < ApplicationController
 	
+  
+  def new
+    @card = Card.new
+    @column = KanbanColumn.find(params[:column])
+  end
+  
   def show
     @card = Card.find(params[:id])
   end
@@ -8,6 +14,20 @@ class CardsController < ApplicationController
 		@card = Card.find(params[:id])
 		@card.update(row_order_position: params[:row_order_position], kanban_column_id: params[:column_id])
 		head :no_content
+  end
+
+  def create
+    @card = Card.new(new_card_params)
+
+    respond_to do |format|
+      if @card.save
+        format.html { redirect_to kanban_boards_path, notice: "Card was successfully created." }
+        format.json { render :show, status: :created, location: @card }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @card.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
@@ -20,3 +40,10 @@ class CardsController < ApplicationController
     end
   end
 end
+
+  private
+
+  def new_card_params
+    params.require(:card).permit(:name, :start_date, :due_date, :kanban_column_id)
+  end
+
