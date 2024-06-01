@@ -46,7 +46,7 @@ class KanbanBoardsController < ApplicationController
   def update
     @board = KanbanBoard.find(params[:id])
     respond_to do |format|
-      if @board.update(kanban_update_column_params)
+      if @board.update(kanban_update_name_params)
         format.html { redirect_to kanban_board_url(@board.id), notice: "Board was successfully updated." }
         format.json { render :show, status: :ok, location: @board }
       else
@@ -62,8 +62,8 @@ class KanbanBoardsController < ApplicationController
     params.require(:kanban_board).permit(:name, :user_id, kanban_columns_attributes: [:name, :_destroy])
   end
 
-  def kanban_update_column_params
-    params.require(:kanban_board).permit(:name, kanban_columns_attributes: [:name, :kanban_board_id, :_destroy])
+  def kanban_update_name_params
+    params.require(:kanban_board).permit(:name)
   end
 
 # class end
