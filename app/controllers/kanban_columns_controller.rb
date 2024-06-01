@@ -1,20 +1,35 @@
 class KanbanColumnsController < ApplicationController
 
-  def edit
-    @column = KanbanColumn.find(params[:id])
+  def new
+    @column = KanbanColumn.new
+    @board = KanbanBoard.find(params[:board])
+  end
+  
+  def create
+    @column = KanbanColumn.new(add_kanban_column_params)
+
+    respond_to do |format|
+      if @column.save
+        format.html { redirect_to kanban_boards_path, notice: "Column was successfully added." }
+        format.json { render :show, status: :created, location: @column }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @column.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
-  def sort
+  def edit
     @column = KanbanColumn.find(params[:id])
-    @column.update(row_order_position: params[:row_order_position])
-    head :no_content
+    @board = KanbanBoard.find(params[:board])
   end
 
   # PATCH/PUT /column/1 or /column/1.json
   def update
     @column = KanbanColumn.find(params[:id])
+
     respond_to do |format|
-      if @column.update(kanban_column_params)
+      if @column.update(add_kanban_column_params)
         format.html { redirect_to kanban_board_url(@column.kanban_board_id), notice: "Column was successfully updated." }
         format.json { render :show, status: :ok, location: @column }
       else
@@ -35,11 +50,20 @@ class KanbanColumnsController < ApplicationController
     end
   end
 
+  def sort
+    @column = KanbanColumn.find(params[:id])
+    @column.update(row_order_position: params[:row_order_position])
+    head :no_content
+  end
+
   private
 
-  # Currently only makes cards, may need to update it eventually
   def kanban_column_params
     params.require(:kanban_column).permit(:name)
+  end
+
+  def add_kanban_column_params
+    params.require(:kanban_column).permit(:name, :kanban_board_id)
   end
 
 end

@@ -1,0 +1,9 @@
+  <%= notice %>
+  
+  <%= form_with(model: column) do |form|%>
+    <%= form.label 'Column Name' %>
+    <%= form.text_field :name %>
+    <%= form.hidden_field :kanban_board_id, :value => board.id%>
+    <%= form.submit 'Submit'%>
+    <%= board.id%>
+  <% end %>
