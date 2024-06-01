@@ -1,12 +1,15 @@
 class CardsController < ApplicationController
 	
-  
   def new
     @card = Card.new
     @column = KanbanColumn.find(params[:column])
   end
   
   def show
+    @card = Card.find(params[:id])
+  end
+
+  def edit
     @card = Card.find(params[:id])
   end
   
@@ -30,6 +33,19 @@ class CardsController < ApplicationController
     end
   end
 
+  def update
+    @card = Card.find(params[:id])
+    respond_to do |format|
+      if @card.update(update_card_params)
+        format.html { redirect_to kanban_boards_path, notice: "Card was successfully updated." }
+        format.json { render :show, status: :ok, location: @card }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @card.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def destroy
     @card = Card.find(params[:id])
     @card.destroy!
@@ -39,11 +55,17 @@ class CardsController < ApplicationController
       format.json { head :no_content }
     end
   end
-end
 
   private
 
   def new_card_params
     params.require(:card).permit(:name, :start_date, :due_date, :kanban_column_id)
   end
+
+  def update_card_params
+    params.require(:card).permit(:name, :start_date, :due_date)
+  end
+
+end
+
 

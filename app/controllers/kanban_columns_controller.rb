@@ -2,7 +2,6 @@ class KanbanColumnsController < ApplicationController
 
   def edit
     @column = KanbanColumn.find(params[:id])
-    @column.cards.build
   end
 
   def sort
@@ -16,7 +15,7 @@ class KanbanColumnsController < ApplicationController
     @column = KanbanColumn.find(params[:id])
     respond_to do |format|
       if @column.update(kanban_column_params)
-        format.html { redirect_to kanban_board_url(@column.kanban_board_id), notice: "Card was successfully updated." }
+        format.html { redirect_to kanban_board_url(@column.kanban_board_id), notice: "Column was successfully updated." }
         format.json { render :show, status: :ok, location: @column }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -40,7 +39,7 @@ class KanbanColumnsController < ApplicationController
 
   # Currently only makes cards, may need to update it eventually
   def kanban_column_params
-    params.require(:kanban_column).permit(cards_attributes: [:name, :start_date, :end_date, :due_date, :kanban_column_id, :_destroy])
+    params.require(:kanban_column).permit(:name)
   end
 
 end

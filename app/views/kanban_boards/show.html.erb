@@ -33,6 +33,7 @@
           </ul>
         </li>
         <%= link_to "Create Card", new_card_path(:column => column.id) %>
+        <%= link_to 'Edit Column', edit_kanban_column_path(column)%>
         <%= button_to "Destroy this Column", kanban_column_path(column), method: :delete %>
       </ul>
     <% end %>

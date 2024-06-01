@@ -6,18 +6,12 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>Create Card</h1>
-  <%= form_with(model: @column) do |column| %>
-    <%= column.fields_for :cards, Card.new do |card|%>
-      <%= card.label 'Name', style: "display: block" %>
-      <%= card.text_field :name %>
-      <%= card.label 'Start', style: "display: block" %>
-      <%= card.date_field :end_date %>
-      <%= card.label 'Due', style: "display: block" %>
-      <%= card.date_field :due_date %>
-      <%= card.hidden_field :kanban_column_id, :value => @column.id %>
-    <% end %>
-    <%= column.submit 'Create Card' %>
+  <h1>Edit Column</h1>
+  <%= form_with(model:@column) do |form|%>
+    <%= form.label 'Column Name' %>
+    <%= form.text_field :name %>
+
+    <%= form.submit 'Edit'%>
   <% end %>
 </body>
 </html>

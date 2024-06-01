@@ -12,7 +12,7 @@
     <li>Start Date: <%= @card.start_date %></li>
     <li>Due Date: <%= @card.due_date %></li>
   </ul>
-  
+  <%= link_to 'Edit Card', edit_card_path %>
   <%= button_to "Destroy this Card", @card, method: :delete %>
 
 </body>
