@@ -10,6 +10,7 @@ class KanbanBoardsController < ApplicationController
     @board_id = params[:id]
   end
 
+  # Upon creation the board will also allow columns to be built
   def new
     @board = KanbanBoard.new
     @board.kanban_columns.build

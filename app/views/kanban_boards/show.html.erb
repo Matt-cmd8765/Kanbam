@@ -6,8 +6,10 @@
     <title>Your Boards</title>
 </head>
 <body>
-
-  <%= notice %>
+  <div style="color: green">
+    <%= notice %>
+  </div>
+  <%# for devise. Will eventually be in navbar %>
   <% if user_signed_in? %> 
   <div> Welcome number: <%= current_user.id %> Please enjoy</div> 
     <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
@@ -18,7 +20,7 @@
   <%# Kanban board %>
   <h1><%= @board.name %></h1>
 
-  <%# Columns and cards %>
+  <%# Columns and cards this uses the sortable javascript controller to sort the ul and li %>
   <div data-controller="sortable" style='display: flex'>
     <% @columns.rank(:row_order).each do | column | %>
       <ul data-sortable-update-url="<%= sort_kanban_column_path(column) %>"style='border: solid'>
@@ -32,22 +34,21 @@
             <% end %>
           </ul>
         </li>
+
+        <%# Edit, create and delete links and buttons for column and cards %>
         <%= link_to "Create Card", new_card_path(:column => column.id) %>
         <%= link_to 'Edit Column', edit_kanban_column_path(column, :board => @board.id)%>
-        <%= button_to "Destroy this Column", kanban_column_path(column), method: :delete %>
+        <%= button_to "Delete Column", kanban_column_path(column), method: :delete %>
       </ul>
     <% end %>
   </div>
   
   <br>
-
+  <%# Edit, create and delete links and buttons for board and cards %>
   <%= link_to 'Add Column', new_kanban_column_path(:board => @board.id) %>
-
   <%= link_to "Edit Board", edit_kanban_board_path %>
-
   <%= button_to "Destroy this Board", @board, method: :delete %>
-  <br>
-  <%= link_to 'Home', kanban_boards_path%>
+  <%= link_to 'Home', kanban_boards_path %>
 </body>
 </html>
 

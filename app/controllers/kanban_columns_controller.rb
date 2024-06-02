@@ -50,6 +50,7 @@ class KanbanColumnsController < ApplicationController
     end
   end
 
+  # this is needed to store data for the sortable javascript controller
   def sort
     @column = KanbanColumn.find(params[:id])
     @column.update(row_order_position: params[:row_order_position])
