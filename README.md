@@ -14,8 +14,12 @@ Following this youtube [video](https://www.youtube.com/watch?v=OZWhN4Gtjos&ab_ch
 * Ranked-model gem: [0.4.9](https://github.com/brendon/ranked-model)
 * Requestjs-rails gem: [0.0.11](https://github.com/rails/requestjs-rails)
 
-## Nested forms
+## Nested forms 
+
+### For board creation
 Following this youtube [video](https://www.youtube.com/watch?v=7JNRZLTRDCc&ab_channel=Deanin). This is a stimulus controller that allows for columns to be added or removed when a new board is created. Info for nested forms in stimulus is [here](https://www.stimulus-components.com/docs/stimulus-rails-nested-form). It is essentially the same as the video, but the video explains it better. 
 
+### For comments
+This [tutorial](https://dev.to/jamgar/how-to-create-a-comment-and-reply-system-in-ruby-on-rails-10ld) was followed to create the nested forms required for comments and replies. 
 
 
