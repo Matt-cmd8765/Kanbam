@@ -7,10 +7,10 @@ class KanbanColumnsController < ApplicationController
   
   def create
     @column = KanbanColumn.new(add_kanban_column_params)
-
+    board = KanbanBoard.find(@column.kanban_board_id)
     respond_to do |format|
       if @column.save
-        format.html { redirect_to kanban_boards_path, notice: "Column was successfully added." }
+        format.html { redirect_to kanban_board_path(board), notice: "Column was successfully added." }
         format.json { render :show, status: :created, location: @column }
       else
         format.html { render :new, status: :unprocessable_entity }

@@ -12,6 +12,17 @@
     <li>Start Date: <%= @card.start_date %></li>
     <li>Due Date: <%= @card.due_date %></li>
   </ul>
+
+  <%= form_with(model: [@card, @card.comments.build]) do |f| %>
+    <%= f.label 'New Comment'%>
+    <%= f.text_area :comment %>
+    <%= f.hidden_field :user_id, :value => current_user.id%>
+    <%= f.hidden_field :card_id, :value => @card.id%>
+    <%= f.submit 'Comment'%>
+  <% end %>
+
+  <%= render @card.comments %>
+
   <%= link_to 'Edit Card', edit_card_path %>
   <%= button_to "Destroy this Card", @card, method: :delete %>
 

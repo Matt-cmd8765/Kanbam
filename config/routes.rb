@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+ 
   # For Devise
   devise_for :users, controllers: { sessions: 'users/sessions' }
 
@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     member do
       put :sort
     end
+    resources :comments
   end
 
   # Caolumn resources set up this way to get to sort function. From Supe Rails youtube
