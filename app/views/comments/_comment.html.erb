@@ -1,4 +1,10 @@
-
-<% unless !comment.persisted? %>
-  <%= comment.comment %>
+<%# recursive comments form %>
+<%= comment.comment %>
+<br>
+<%#= link_to 'Reply', new_card_comment_path(:card => Card.find(comment.card_id), :parent_id => comment.id)%>
+<%= render "comments/reply_form", card: Card.find(comment.card_id), parent_id: comment.id %>
+<br>
+<% comment.replies.each do |reply| %>
+  <%= render "comments/comment", comment: reply %>
 <% end %>
+<br>

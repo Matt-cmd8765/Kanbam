@@ -1,7 +1,9 @@
 class CommentsController < ApplicationController
 
   def new
-    @comment = Comment.new
+    @card = Card.find(params[:card_id])
+    @comment = @card.comments.new(parent_id: params[:parent_id])
+    @parent_id = params[:parent_id]
   end
 
   def show
@@ -34,6 +36,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:comment, :user_id, :card_id)
+    params.require(:comment).permit(:comment, :user_id, :card_id, :parent_id)
   end
 end

@@ -7,6 +7,8 @@ class CardsController < ApplicationController
   
   def show
     @card = Card.find(params[:id])
+    column = KanbanColumn.find(@card.kanban_column_id)
+    @board = KanbanBoard.find(column.kanban_board_id)
   end
 
   def edit

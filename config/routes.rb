@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :kanban_boards
 
-  # Card resources set up this way to get to sort function. From Supe Rails youtube
+  # * Card resources set up this way to get to sort function. From Supe Rails youtube
   resources :cards do
     member do
       put :sort
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  # Caolumn resources set up this way to get to sort function. From Supe Rails youtube
+  # * Column resources set up this way to get to sort function. From Supe Rails youtube
   resources :kanban_columns do
     member do
       put :sort

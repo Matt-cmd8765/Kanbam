@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_03_080043) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_06_074840) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,7 +32,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_080043) do
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "parent_id"
     t.index ["card_id"], name: "index_comments_on_card_id"
+    t.index ["parent_id"], name: "index_comments_on_parent_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -66,6 +68,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_080043) do
 
   add_foreign_key "cards", "kanban_columns"
   add_foreign_key "comments", "cards"
+  add_foreign_key "comments", "comments", column: "parent_id"
   add_foreign_key "comments", "users"
   add_foreign_key "kanban_columns", "kanban_boards"
 end
