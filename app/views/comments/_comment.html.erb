@@ -1,9 +1,13 @@
 <%# recursive comments form %>
 <%= comment.comment %>
-<br>
 <%#= link_to 'Reply', new_card_comment_path(:card => Card.find(comment.card_id), :parent_id => comment.id)%>
-<%= render "comments/reply_form", card: Card.find(comment.card_id), parent_id: comment.id %>
-<br>
+<div data-controller="hide">
+  <div hidden=true data-hide-target="reply">
+    <%= render "comments/reply_form", card: Card.find(comment.card_id), parent_id: comment.id %>
+  </div>
+  <button data-hide-target="button" data-action="hide#unhide">Reply</button>
+  <button hidden=true data-hide-target="discardbutton" data-action="hide#hide">Discard Reply</button>
+</div>
 <% comment.replies.each do |reply| %>
   <%= render "comments/comment", comment: reply %>
 <% end %>
