@@ -1,8 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 
-// OK so this controller is for buttons to hide / unhide the reply form. To start the reply form and discard buttons are hidden. Then clicking reply unhides them and hides the reply button. The discard button then rehides the form and reply buttons. 
+//* OK so this controller is for buttons to hide / unhide the reply form. To start the reply form and discard buttons are hidden. Then clicking reply unhides them and hides the reply button. The discard button then rehides the form and reply buttons. 
 
-//Is it the best way to do this? No! But just don't ask questions ok?
+//! Is it the best way to do this? No! But just don't ask questions ok?
 
 export default class extends Controller {
   static targets = ["reply", "button", "discardbutton"]

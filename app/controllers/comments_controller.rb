@@ -33,6 +33,13 @@ class CommentsController < ApplicationController
   def destroy
   end
 
+  def like
+    #! This probably won't work you need to change it.
+    @comment = Comment.find(params[:comment_id])
+    Like.create(user_id: current_user.id, comment_id: @comment.id)
+    redirect_to card_path(@card)
+  end
+
   private
 
   def comment_params

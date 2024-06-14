@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
  
-  # For Devise
+  #* For Devise
   devise_for :users, controllers: { sessions: 'users/sessions' }
 
   resources :kanban_boards
@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  put 'comment/:id/like', to: 'comments#like', as: 'like'
+  
   # * Column resources set up this way to get to sort function. From Supe Rails youtube
   resources :kanban_columns do
     member do
@@ -25,7 +27,6 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  #! root 
   root to: 'kanban_boards#index'
 end

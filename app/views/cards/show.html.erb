@@ -18,10 +18,10 @@
 
   <%# view comments %>
   <% @card.comments.each do |comment| %>
-    <%# this if statement prevents an extra comment from being generated %>
+    <%# this if statement prevents an extra blank comment from being generated %>
     <% if comment.comment.blank? %>
     <% elsif comment.parent_id.blank?%>
-      <%= render 'comments/comment', comment: comment %>
+      <%= render 'comments/comment', comment: comment, :card => @card %>
     <% end %>
   <% end %>
 

@@ -1,6 +1,6 @@
 <%# recursive comments form %>
 <%= comment.comment %>
-<%#= link_to 'Reply', new_card_comment_path(:card => Card.find(comment.card_id), :parent_id => comment.id)%>
+<%= button_to 'Like', like_path(:comment_id => comment.id), method: 'put' %>
 <div data-controller="hide">
   <div hidden=true data-hide-target="reply">
     <%= render "comments/reply_form", card: Card.find(comment.card_id), parent_id: comment.id %>
