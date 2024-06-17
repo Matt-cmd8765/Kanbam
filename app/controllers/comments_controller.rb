@@ -25,19 +25,33 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    # ! This is from the cards controller, it may not work for comments.
+    @comment = Comment.find(params[:id])
+    @card = Card.find(@comment.card_id)
   end
 
   def update
+    @comment = Comment.find(params[:id])
+    @card = Card.find(@comment.card_id)
+
+    respond_to do |format|
+      if @comment.update(comment_params)
+        format.html { redirect_to card_path(@card), notice: "Comment was successfully edited." }
+        format.json { render :show, status: :ok, location: @comment }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @card.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
   end
 
   def like
-    #! This probably won't work you need to change it.
     @comment = Comment.find(params[:comment_id])
     Like.create(user_id: current_user.id, comment_id: @comment.id)
-    redirect_to card_path(@card)
+    head :no_content
   end
 
   private

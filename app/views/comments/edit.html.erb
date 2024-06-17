@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Edit Comment</h1>
+  <%= form_with model: @comment do |f| %>
+    <%= f.label 'Edit Comment'%>
+    <%= f.text_area :comment %>
+    <%= f.hidden_field :user_id, :value => current_user.id%>
+    <%= f.hidden_field :card_id, :value => @card.id%>
+    <%= f.submit 'Edit'%>
+<% end %>
+</body>
+</html>
