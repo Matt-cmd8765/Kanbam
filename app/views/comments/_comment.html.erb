@@ -1,6 +1,10 @@
 <%# recursive comments form %>
-<%= comment.comment %>
-<%= button_to 'Like', like_path(:comment_id => comment.id), method: 'put' %><%=comment.likes.count%>
+<%= comment.comment %><%=comment.likes.count%>
+<% if comment.liked?(comment, current_user) %>
+  <%= 'oi put unlike here' %>
+<% else %>
+  <%= button_to 'Like', like_path(:comment_id => comment.id), method: 'put' %>
+<% end %>
 <% if comment.user_id == current_user.id %>
   <%= link_to 'Edit Comment', edit_comment_path(comment) %>
 <% end %>

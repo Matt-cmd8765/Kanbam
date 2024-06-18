@@ -9,23 +9,16 @@
   <div style="color: green">
     <%= notice %>
   </div>
-  <%# for devise. Will eventually be in navbar %>
-  <% if user_signed_in? %> 
-  <div> Welcome number: <%= current_user.id %> Please enjoy</div> 
-    <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
-  <% else %>
-    <%= button_to "Sign in", new_user_session_path %> 
-  <% end %>
 
   <%# Kanban board %>
   <h1><%= @board.name %></h1>
 
   <%# Columns and cards this uses the sortable javascript controller to sort the ul and li %>
-  <div data-controller="sortable" style='display: flex'>
+  <div data-controller="sortable" data-sortable-group-value="column" style='display: flex'>
     <% @columns.rank(:row_order).each do | column | %>
       <ul data-sortable-update-url="<%= sort_kanban_column_path(column) %>"style='border: solid'>
         <li style='width: 200px'>
-          <%=column.name %>
+          <%=column.name %><%= column.row_order%>
           <ul data-controller="sortable" data-sortable-group-value="cards" data-sortable-column-id="<%=column.id%>">
             <% column.cards.rank(:row_order).each do |card| %>
             <li data-sortable-update-url="<%= sort_card_path(card) %>">

@@ -10,5 +10,4 @@ class Card < ApplicationRecord
   ranks :row_order, with_same: :kanban_column_id
 
   accepts_nested_attributes_for :comments, reject_if: :all_blank, allow_destroy: true
-
 end

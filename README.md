@@ -22,4 +22,8 @@ Following this youtube [video](https://www.youtube.com/watch?v=7JNRZLTRDCc&ab_ch
 ### For comments
 This [tutorial](https://dev.to/jamgar/how-to-create-a-comment-and-reply-system-in-ruby-on-rails-10ld) was followed to create the nested forms required for comments and replies. 
 
+### For likes 
+This [tutorial](https://medium.com/swlh/how-to-add-a-simple-like-button-to-your-rails-6-application-c1040999dc2) was followed to create likes. 
+
+
 

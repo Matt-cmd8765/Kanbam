@@ -5,6 +5,6 @@ class KanbanColumn < ApplicationRecord
 
   # from the ranked model gem https://github.com/brendon/ranked-model
   include RankedModel
-  ranks :row_order
+  ranks :row_order, with_same: :kanban_board_id
   accepts_nested_attributes_for :cards, reject_if: :all_blank, allow_destroy: true
 end

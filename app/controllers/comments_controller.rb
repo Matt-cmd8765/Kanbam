@@ -51,6 +51,7 @@ class CommentsController < ApplicationController
   def like
     @comment = Comment.find(params[:comment_id])
     Like.create(user_id: current_user.id, comment_id: @comment.id)
+    redirect_to card_path(@comment.card_id)
     head :no_content
   end
 
