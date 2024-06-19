@@ -25,7 +25,6 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    # ! This is from the cards controller, it may not work for comments.
     @comment = Comment.find(params[:id])
     @card = Card.find(@comment.card_id)
   end
@@ -46,6 +45,13 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy!
+
+    respond_to do |format|
+      format.html { redirect_to card_path(@comment.card_id), notice: "Comment was successfully destroyed." }
+      format.json { head :no_content }
+    end
   end
 
   def like

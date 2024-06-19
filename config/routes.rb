@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :kanban_boards
 
-  resources :comments, only: [:edit, :update]
+  resources :comments, only: [:edit, :update, :destroy]
 
   # * Card resources set up this way to get to sort function. From Supe Rails youtube
   resources :cards do
