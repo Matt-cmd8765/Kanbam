@@ -57,8 +57,19 @@ class CommentsController < ApplicationController
   def like
     @comment = Comment.find(params[:comment_id])
     Like.create(user_id: current_user.id, comment_id: @comment.id)
-    redirect_to card_path(@comment.card_id)
-    head :no_content
+    respond_to do |format|
+      format.html { redirect_to card_path(@comment.card_id), notice: "Like was successfully created." }
+      format.json { head :no_content }
+    end
+  end
+
+  def unlike
+    @comment = Comment.find(params[:comment_id])
+    Like.destroy_by(user_id: current_user.id, comment_id: @comment.id)
+    respond_to do |format|
+      format.html { redirect_to card_path(@comment.card_id), notice: "Like was successfully destroyed." }
+      format.json { head :no_content }
+    end
   end
 
   private

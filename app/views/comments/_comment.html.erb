@@ -1,7 +1,7 @@
 <%# recursive comments form %>
 <%= comment.comment %><%= comment.likes.count%>
 <% if comment.liked?(comment, current_user) %>
-    <%= 'bitch' %>
+  <%= button_to 'Unlike', unlike_path(:comment_id => comment.id), method: 'delete' %>
 <% else %>
   <%= button_to 'Like', like_path(:comment_id => comment.id), method: 'put' %>
 <% end %>
