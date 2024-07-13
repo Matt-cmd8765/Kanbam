@@ -73,3 +73,4 @@ gem 'dartsass-sprockets'
 gem 'sortablejs-rails'
 gem "ranked-model", "~> 0.4.9"
 gem 'requestjs-rails'
+gem 'popper_js', '~> 2.11.8'
