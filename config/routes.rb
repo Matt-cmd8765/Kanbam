@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   # * Needed for the likes route
   put 'comment/:id/like', to: 'comments#like', as: 'like'
+  delete 'comment/:id/like', to: 'comments#unlike', as: 'unlike'
   
   # * Column resources set up this way to get to sort function. From Supe Rails youtube
   resources :kanban_columns do
