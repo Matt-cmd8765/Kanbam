@@ -7,12 +7,13 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "style"%>
     <%= javascript_importmap_tags %>
     <%# This is needed to make the dropdown menu work%>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </head>
 
-  <body>
+  <body class="p-3 mb-2 bg-dark text-white">
  
   <% if user_signed_in? %> 
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -33,6 +34,18 @@
             <ul class="dropdown-menu">
             <% current_user.kanban_boards.each do |board| %>
               <li class="dropdown-item"><%= link_to "#{board.name}", board %></li>
+            <% end %>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Subscribed Boards
+            </a>
+            <ul class="dropdown-menu">
+            <% current_user.other_boards.each do |other_board| %>
+            <% board_id = other_board.kanban_board_id %>
+            <% k_board = KanbanBoard.find(board_id) %>
+              <li class="dropdown-item"><%= link_to "#{k_board.name}", k_board %></li>
             <% end %>
             </ul>
           </li>
