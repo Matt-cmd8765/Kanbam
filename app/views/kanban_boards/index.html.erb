@@ -9,11 +9,15 @@
   <%= notice %>
 
   <h1>Your Boards</h1>
-  <% @boards.each do |board| %>
-    <ul>
-      <li><%= link_to "#{board.name}", board %></li>
-    </ul>
-  <% end %>
+    <% @boards.each do |board| %>
+      <ul>
+        <div class="card">
+          <div class="card-body">
+            <li><%= link_to "#{board.name}", board, class:"link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" %></li>
+          </div>
+        </div>
+      </ul>
+    <% end %>
 
   <h1>Create a New Board</h1>
   <%= link_to 'Create Board', new_kanban_board_path %>
