@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :comments, only: [:edit, :update, :destroy]
 
+  resources :other_boards, only: [:new, :create]
+
   # * Card resources set up this way to get to sort function. From Supe Rails youtube
   resources :cards do
     member do

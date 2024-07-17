@@ -37,11 +37,13 @@
   </div>
   
   <br>
+  <%= link_to 'Add Someone', new_other_board_path(:board => @board.id) %>
   <%# Edit, create and delete links and buttons for board and cards %>
   <%= link_to 'Add Column', new_kanban_column_path(:board => @board.id) %>
   <%= link_to "Edit Board", edit_kanban_board_path %>
   <%= button_to "Destroy this Board", @board, method: :delete %>
   <%= link_to 'Home', kanban_boards_path %>
+  
 </body>
 </html>
 

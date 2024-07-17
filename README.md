@@ -25,5 +25,8 @@ This [tutorial](https://dev.to/jamgar/how-to-create-a-comment-and-reply-system-i
 ### For likes 
 This [tutorial](https://medium.com/swlh/how-to-add-a-simple-like-button-to-your-rails-6-application-c1040999dc2) was followed to create likes. 
 
+## Subscribers
+Users can subsrcibe to other boards. The assocaition is a have many through association through the other_boards model. The model contains the subscriber (user) id and kanban_board_id. 
+
 
 

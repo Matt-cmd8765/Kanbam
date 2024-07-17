@@ -1,0 +1,23 @@
+  <%= form_with(model: other_board) do |form| %>
+    <% if other_board.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(other_board.errors.count, "error") %> prohibited this other_board from being saved:</h2>
+        <ul>
+          <% other_board.errors.each do |error| %>
+            <li><%= other_board.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    
+    <%# ! TODO Start updates here. You may need to add to the controller. %>
+    <%= form.label 'User', style: "display: block" %>
+    <%= form.select :subscriber_id, User.order(:email).map {|user| [user.email, user.id]} %>
+      <%# User.all.each do |user| %>
+      <%# end %>
+    <%= form.hidden_field :kanban_board_id, :value => board.id %>
+    <%= form.submit 'Add user' %>
+
+  <% end %>
+  
