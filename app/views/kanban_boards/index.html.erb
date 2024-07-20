@@ -1,22 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home Page</title>
 </head>
-  <%= notice %>
-  <div class="d-flex align-items-center">
-    <h1>Your Boards</h1>
-      <% @boards.each do |board| %>
-        <ul>
-          <div class="card">
-            <div class="card-body">
-              <li><%= link_to "#{board.name}", board %></li>
+<body>
+  <div class="container">
+    <%= notice %>
+    <div class="h-100 d-flex align-items-center justify-content-center">
+      <div>
+        <h1>Your Boards</h1>
+        <div class="board-list">
+          <% @boards.each do |board| %>
+            <div class="board-container">
+              <h2><%= link_to board.name, board %></h2>
             </div>
-          </div>
-        </ul>
-      <% end %>
-
-    <h1>Create a New Board</h1>
-    <%= link_to 'Create Board', new_kanban_board_path %>
-
+          <% end %>
+        </div>
+        <h1>Create a New Board</h1>
+        <%= link_to 'Create Board', new_kanban_board_path, class: "btn btn-primary" %>
+      </div>
+    </div>
   </div>
+</body>
+</html>

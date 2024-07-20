@@ -1,7 +1,96 @@
-a {
-  text-decoration: none;
-}
-html, body {
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa; /* Light gray background */
+  color: #333; /* Dark gray text */
   margin: 0;
-  height: 100%;
+  padding: 0;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.board-container {
+  background-color: #ffffff; /* White container background */
+  border: 1px solid #ddd; /* Light gray border */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.board-container:hover {
+  transform: translateY(-5px); /* Lift container on hover */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* Increased shadow on hover */
+}
+h2 {
+  font-size: 1.5rem; /* Heading size */
+  margin-bottom: 10px;
+}
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+li {
+  margin-bottom: 5px;
+}
+a {
+  color: #007bff; /* Blue link color */
+  text-decoration: none;
+  font-weight: bold; /* Make links bold */
+  transition: color 0.3s;
+}
+a:hover {
+  color: #0056b3; /* Darker blue on hover */
+}
+.show-board-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+}
+.board-column {
+  background-color: #ebecf0; /* Light gray background for columns */
+  border-radius: 8px;
+  width: 300px; /* Column width */
+  margin-right: 20px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+.board-column-header {
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.board-column-cards {
+  margin-top: 10px;
+  flex-grow: 1;
+}
+.board-card {
+  background-color: #fff; /* White card background */
+  border-radius: 4px;
+  box-shadow: 0 1px 0 rgba(9,30,66,.25);
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.board-card:hover {
+  background-color: #f4f5f7; /* Light gray on hover */
+}
+.add-card-link {
+  color: #0079bf; /* Trello blue */
+  text-decoration: none;
+  font-size: 1rem;
+  display: block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.add-card-link:hover {
+  background-color: rgba(0, 121, 191, 0.1); /* Light blue on hover */
 }
