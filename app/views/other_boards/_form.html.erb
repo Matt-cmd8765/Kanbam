@@ -10,12 +10,9 @@
       </div>
     <% end %>
 
-    
-    <%# ! TODO Start updates here. You may need to add to the controller. %>
+    <%# If this is ever a real app I would change this%>
     <%= form.label 'User', style: "display: block" %>
     <%= form.select :subscriber_id, User.order(:email).map {|user| [user.email, user.id]} %>
-      <%# User.all.each do |user| %>
-      <%# end %>
     <%= form.hidden_field :kanban_board_id, :value => board.id %>
     <%= form.submit 'Add user' %>
 
