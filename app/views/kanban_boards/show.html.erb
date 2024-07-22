@@ -10,44 +10,51 @@
     <%= notice %>
   </div>
 
+<h1 class="d-flex justify-content-center"><%= @board.name %></h1>
+
+<div class="h-100 d-flex align-items-center justify-content-center">
   <%# Kanban board %>
-  <h1><%= @board.name %></h1>
+
 
   <%# Columns and cards this uses the sortable javascript controller to sort the ul and li %>
   <div data-controller="sortable" data-sortable-group-value="column" class="show-board-container">
-      <% @columns.rank(:row_order).each do | column | %>
-        <div class="board-column">
-          <ul data-sortable-update-url="<%= sort_kanban_column_path(column) %>">
-            <li>
-              <div class="board-column-header"><%=column.name %></div>
-              <div class="board-column-cards">
-                <div class="board-card">
-                  <ul data-controller="sortable" data-sortable-group-value="cards" data-sortable-column-id="<%=column.id%>">
-                    <% column.cards.rank(:row_order).each do |card| %>
-                    <li data-sortable-update-url="<%= sort_card_path(card) %>">
-                      <%= link_to "#{card.name}", card %>
-                    </li>
-                    <% end %>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <%# Edit, create and delete links and buttons for column and cards %>
-            <%= link_to "Create Card", new_card_path(:column => column.id), class:"add-card-link" %>
-            <%= link_to 'Edit Column', edit_kanban_column_path(column, :board => @board.id)%>
-            <%= button_to "Delete Column", kanban_column_path(column), method: :delete %>
-          </ul>
+    <% @columns.rank(:row_order).each do | column | %>
+      <div class="board-column">
+        <ul data-sortable-update-url="<%= sort_kanban_column_path(column) %>">
+          <li>
+            <div class="board-column-header"><%=column.name %></div>
+            <div class="board-column-cards">
+              <ul data-controller="sortable" data-sortable-group-value="cards" data-sortable-column-id="<%=column.id%>">
+                <% column.cards.rank(:row_order).each do |card| %>
+                <li data-sortable-update-url="<%= sort_card_path(card) %>" class="board-card">
+                  <%= link_to "#{card.name}", card %>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          </li>
+          <%# Edit, create and delete links and buttons for column and cards %>
+          <%= link_to "Create Card", new_card_path(:column => column.id), class:"add-card-link" %>
+          <%= link_to 'Edit Column', edit_kanban_column_path(column, :board => @board.id), class:"add-card-link"%>
+          <%= button_to "Delete Column", kanban_column_path(column), method: :delete, class:"btn btn-danger" %>
+        </ul>
       </div>
-      <% end %>
+    <% end %>
   </div>
   
-  <br>
-  <%= link_to 'Add Someone', new_other_board_path(:board => @board.id) %>
+</div>
+<div class="d-flex justify-content-center">
+  <%= link_to 'Add Someone', new_other_board_path(:board => @board.id), class:"board-container" %>
   <%# Edit, create and delete links and buttons for board and cards %>
-  <%= link_to 'Add Column', new_kanban_column_path(:board => @board.id) %>
-  <%= link_to "Edit Board", edit_kanban_board_path %>
-  <%= button_to "Destroy this Board", @board, method: :delete %>
-  <%= link_to 'Home', kanban_boards_path %>
+  <%= link_to 'Add Column', new_kanban_column_path(:board => @board.id), class:"board-container" %>
+  <%= link_to "Edit Board", edit_kanban_board_path, class:"board-container" %>
+</div>
+
+<div class="d-flex justify-content-center">
+  <%= button_to "DELETE BOARD", @board, method: :delete, class:"btn btn-danger" %>
+</div>
+
+
   
 </body>
 </html>
