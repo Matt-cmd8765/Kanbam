@@ -10,7 +10,7 @@
 <% end %>
 <% if comment.user_id == current_user.id %>
   <%= link_to 'Edit Comment', edit_comment_path(comment) %>
-  <%= button_to 'Delete Comment', comment_path(comment), method: :delete %>
+  <%= button_to 'Delete Comment', comment_path(comment), method: :delete, form: { data: { turbo_confirm: 'This will permanently delete the comment. Are you sure?' } } %>
 <% end %>
 <div data-controller="hide">
   <div hidden=true data-hide-target="reply">

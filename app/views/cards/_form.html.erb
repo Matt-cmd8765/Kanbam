@@ -1,23 +1,33 @@
-  <%= form_with(model: card) do |form| %>
-    <% if card.errors.any? %>
-      <div style="color: red">
-        <h2><%= pluralize(card.errors.count, "error") %> prohibited this car from being saved:</h2>
-        <ul>
-          <% card.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-    
-    <%= form.label 'Name', style: "display: block" %>
-    <%= form.text_field :name %>
-    <%= form.label 'Start', style: "display: block" %>
-    <%= form.date_field :start_date %>
-    <%= form.label 'Due', style: "display: block" %>
-    <%= form.date_field :due_date %>
-    <%= form.hidden_field :kanban_column_id, :value => @column.id %>
-    <%= form.submit 'Create Card' %>
-
+<%= form_with(model: card, class: "card-form") do |form| %>
+  <% if card.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h2>
+      <ul>
+        <% card.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
   
+  <div class="form-group">
+    <%= form.label 'Name' %>
+    <%= form.text_field :name, class: 'form-control', style: 'width: 300px;' %>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label 'Start' %>
+    <%= form.date_field :start_date, class: 'form-control', style: 'width: 300px;' %>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label 'Due' %>
+    <%= form.date_field :due_date, class: 'form-control', style: 'width: 300px;' %>
+  </div>
+  
+  <%= form.hidden_field :kanban_column_id, value: @column.id %>
+  
+  <div class="form-group mt-3"> <!-- Added mt-3 for margin-top -->
+    <%= form.submit 'Create Card', class: 'btn btn-primary' %>
+  </div>
+<% end %>

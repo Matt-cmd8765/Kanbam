@@ -6,13 +6,12 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>Create Board</h1>
-    <%= render "form", board: @board %>
-  <br>
-
-  <div>
-    <%= link_to "Home", kanban_boards_path %>
+  <div class="d-flex justify-content-center">
+    <h1>Create Board</h1>
   </div>
-
+  <div class="d-flex justify-content-center">
+    <%= render "form", board: @board %>
+    <br>
+  </div>
 </body>
 </html>

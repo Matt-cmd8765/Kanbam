@@ -11,7 +11,7 @@ body {
   padding: 20px;
 }
 .board-container {
-  background-color: #ffffff; /* White container background */
+  background-color: #e8e1e1; /* container background */
   border: 1px solid #ddd; /* Light gray border */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
@@ -38,13 +38,13 @@ li {
   margin-bottom: 5px;
 }
 a {
-  color: #007bff; /* Blue link color */
+  color: #1a5799fb; /* Blue link color */
   text-decoration: none;
   font-weight: bold; /* Make links bold */
   transition: color 0.3s;
 }
 a:hover {
-  color: #0056b3; /* Darker blue on hover */
+  color: #022c58; /* Darker blue on hover */
 }
 .show-board-container {
   max-width: 1200px;
@@ -53,7 +53,7 @@ a:hover {
   justify-content: space-between;
 }
 .board-column {
-  background-color: #ebecf0; /* Light gray background for columns */
+  background-color: #ebecf0c3; /* Light gray background for columns */
   border-radius: 8px;
   width: 300px; /* Column width */
   margin-right: 20px;

@@ -35,8 +35,8 @@
           </li>
           <%# Edit, create and delete links and buttons for column and cards %>
           <%= link_to "Create Card", new_card_path(:column => column.id), class:"add-card-link" %>
-          <%= link_to 'Edit Column', edit_kanban_column_path(column, :board => @board.id), class:"add-card-link"%>
-          <%= button_to "Delete Column", kanban_column_path(column), method: :delete, class:"btn btn-danger" %>
+          <%= link_to 'Change Column Name', edit_kanban_column_path(column, :board => @board.id), class:"add-card-link"%>
+          <%= button_to "Delete Column", kanban_column_path(column), method: :delete, form: { data: { turbo_confirm: 'This will permanently delete the column. Are you sure?' } }, class:"btn btn-warning" %>
         </ul>
       </div>
     <% end %>
@@ -47,11 +47,11 @@
   <%= link_to 'Add Someone', new_other_board_path(:board => @board.id), class:"board-container" %>
   <%# Edit, create and delete links and buttons for board and cards %>
   <%= link_to 'Add Column', new_kanban_column_path(:board => @board.id), class:"board-container" %>
-  <%= link_to "Edit Board", edit_kanban_board_path, class:"board-container" %>
+  <%= link_to "Change Board Name", edit_kanban_board_path, class:"board-container" %>
 </div>
 
 <div class="d-flex justify-content-center">
-  <%= button_to "DELETE BOARD", @board, method: :delete, class:"btn btn-danger" %>
+  <%= button_to "DELETE BOARD", @board, method: :delete, form: { data: { turbo_confirm: 'This will permanently delete the board. Are you sure?' } } , class:"btn btn-warning" %>
 </div>
 
 

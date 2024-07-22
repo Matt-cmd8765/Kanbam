@@ -15,9 +15,12 @@
   <% end %>
 
   <%# This is where the board name is entered %>
-  <%= f.label 'Board Name', style: "display: block" %>
-  <%= f.text_field :name %>
-  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <div class="form-group">
+    <%= f.label 'Board Name', style: "display: block" %>
+    <%= f.text_field :name, class:"form-control", style: 'width: 300px;' %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+  </div>
+
 
   <%# Options for user to add columns %>
   <template data-nested-form-target="template">
@@ -27,17 +30,17 @@
   </template>
   <%= f.fields_for :kanban_columns do |columns| %>
     <%= render "column_form", f: columns %>
+    
   <% end %>
 
   <div data-nested-form-target="target"></div>
-  <button type="button" data-action="nested-form#add">Add Column</button>
+  <div class="d-flex justify-content-center">
+    <button type="button" data-action="nested-form#add" class="btn btn-primary">Add Column</button>
+    <%# end of column addition %>
+    <%# Create board button %>
+    <%= f.submit 'Create!', class:"btn btn-primary"%>
+  </div>
 
-  <%# end of column addition %>
-
-  <br>
-
-  <%# Create board button %>
-  <%= f.submit 'Create!'%>
 <% end %>
 
 
