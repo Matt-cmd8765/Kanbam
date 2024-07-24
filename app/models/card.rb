@@ -1,6 +1,8 @@
 class Card < ApplicationRecord
   # ! validations
-  validates :name, presence: true
+  validates :name, presence: true, on: :create
+  validates :kanban_column_id, presence: true, on: :create
+
 
   belongs_to :kanban_column
   has_many :comments

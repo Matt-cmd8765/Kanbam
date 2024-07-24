@@ -2,7 +2,7 @@ class CardsController < ApplicationController
 	
   def new
     @card = Card.new
-    @column = KanbanColumn.find(params[:column])
+    @column_id = params[:column]
   end
   
   def show

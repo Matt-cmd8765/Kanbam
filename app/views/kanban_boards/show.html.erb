@@ -34,7 +34,7 @@
             </div>
           </li>
           <%# Edit, create and delete links and buttons for column and cards %>
-          <%= link_to "Create Card", new_card_path(:column => column.id), class:"add-card-link" %>
+          <%= link_to "Create Card", new_card_path(:column => column), class:"add-card-link" %>
           <%= link_to 'Change Column Name', edit_kanban_column_path(column, :board => @board.id), class:"add-card-link"%>
           <%= button_to "Delete Column", kanban_column_path(column), method: :delete, form: { data: { turbo_confirm: 'This will permanently delete the column. Are you sure?' } }, class:"btn btn-warning" %>
         </ul>
