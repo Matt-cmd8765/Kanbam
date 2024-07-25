@@ -1,5 +1,7 @@
 class KanbanColumn < ApplicationRecord
   validates :name, presence: true, on: :create
+  validates :kanban_board_id, presence: true, on: :create
+
   has_many :cards, dependent: :destroy
   belongs_to :kanban_board
 

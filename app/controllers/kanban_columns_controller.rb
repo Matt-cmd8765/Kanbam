@@ -2,7 +2,7 @@ class KanbanColumnsController < ApplicationController
 
   def new
     @column = KanbanColumn.new
-    @board = KanbanBoard.find(params[:board])
+    @board_id = params[:board]
   end
   
   def create

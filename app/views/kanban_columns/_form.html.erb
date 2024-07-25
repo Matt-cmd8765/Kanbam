@@ -1,9 +1,18 @@
   <%= notice %>
   
   <%= form_with(model: column) do |form|%>
+    <% if column.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(column.errors.count, "error") %> prohibited this column from being saved:</h2>
+      <ul>
+        <% column.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
     <%= form.label 'Column Name' %>
     <%= form.text_field :name %>
-    <%= form.hidden_field :kanban_board_id, :value => board.id%>
+    <%= form.hidden_field :kanban_board_id, :value => @board_id %>
     <%= form.submit 'Submit'%>
-    <%= board.id%>
   <% end %>
