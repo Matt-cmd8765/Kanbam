@@ -12,9 +12,9 @@
 
     <%# If this is ever a real app I would change this%>
     <%= form.label 'User', style: "display: block" %>
-    <%= form.select :subscriber_id, User.order(:email).map {|user| [user.email, user.id]} %>
+    <%= form.select :subscriber_id, User.order(:email).map {|user| [user.email, user.id]}, class:"dropdown-menu" %>
     <%= form.hidden_field :kanban_board_id, :value => board.id %>
-    <%= form.submit 'Add user' %>
+    <%= form.submit 'Add user', class: 'btn btn-primary' %>
 
   <% end %>
   

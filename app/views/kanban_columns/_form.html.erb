@@ -1,18 +1,29 @@
-  <%= notice %>
-  
-  <%= form_with(model: column) do |form|%>
-    <% if column.errors.any? %>
+<%= notice %>
+
+<h1>Column Name</h1>
+
+<%= form_with(model: column, class: 'form-horizontal') do |form| %>
+  <% if column.errors.any? %>
     <div class="alert alert-danger">
-      <h2><%= pluralize(column.errors.count, "error") %> prohibited this column from being saved:</h2>
+      <h4><%= pluralize(column.errors.count, "error") %> prohibited this column from being saved:</h4>
       <ul>
-        <% column.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% column.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-    <%= form.label 'Column Name' %>
-    <%= form.text_field :name %>
-    <%= form.hidden_field :kanban_board_id, :value => @board_id %>
-    <%= form.submit 'Submit'%>
-  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name, 'New Column Name' %>
+    <div class="col-sm-10">
+      <%= form.text_field :name, class: 'form-control', style:'width:300px' %>
+    </div>
+  </div>
+
+<%= form.hidden_field :kanban_board_id, value: @board_id %>
+
+<div class="form-group">
+  <%= form.submit 'Submit', class: 'btn btn-primary mt-3' %>
+</div>
+<% end %>
