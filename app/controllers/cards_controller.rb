@@ -71,11 +71,11 @@ class CardsController < ApplicationController
   private
 
   def new_card_params
-    params.require(:card).permit(:name, :start_date, :due_date, :kanban_column_id)
+    params.require(:card).permit(:name, :description, :start_date, :due_date, :kanban_column_id)
   end
 
   def update_card_params
-    params.require(:card).permit(:name, :start_date, :due_date)
+    params.require(:card).permit(:name, :description, :start_date, :due_date)
   end
 
 end
