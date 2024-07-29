@@ -3,59 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= @board.name %></title>
+    <title>Your Boards</title>
 </head>
 <body>
   <div style="color: green">
     <%= notice %>
   </div>
 
-<h1 class="d-flex justify-content-center"><%= @board.name %></h1>
-
-<div class="h-100 d-flex align-items-center justify-content-center">
   <%# Kanban board %>
-
+  <h1 class="h-100 d-flex align-items-center justify-content-center"><%= @board.name %></h1>
 
   <%# Columns and cards this uses the sortable javascript controller to sort the ul and li %>
-  <div data-controller="sortable" data-sortable-group-value="column" class="show-board-container">
+  <div data-controller="sortable" data-sortable-group-value="column" class="h-100 d-flex align-items-center justify-content-center">
     <% @columns.rank(:row_order).each do | column | %>
-      <div class="board-column">
-        <ul data-sortable-update-url="<%= sort_kanban_column_path(column) %>">
-          <li>
-            <div class="board-column-header"><%=column.name %></div>
-            <div class="board-column-cards">
-              <ul data-controller="sortable" data-sortable-group-value="cards" data-sortable-column-id="<%=column.id%>">
-                <% column.cards.rank(:row_order).each do |card| %>
-                <li data-sortable-update-url="<%= sort_card_path(card) %>" class="board-card">
-                  <%= link_to "#{card.name}", card %>
-                </li>
-                <% end %>
-              </ul>
-            </div>
-          </li>
+      <ul data-sortable-update-url="<%= sort_kanban_column_path(column) %>">
+        <div class="card mx-4">
+          <div class="card-body bg-body-secondary">
+            <li>
+              <h3 class="fw-bold"><%=column.name %></h3>
+            <ul data-controller="sortable" data-sortable-group-value="cards" data-sortable-column-id="<%=column.id%>">
+            <% column.cards.rank(:row_order).each do |card| %>
+              <li data-sortable-update-url="<%= sort_card_path(card) %>">
+                <div class="card">
+                  <div class="card-body">
+                    <%= link_to "#{card.name}", card %>
+                  </div>
+                </div>
+              </li>
+              <% end %>
+            </ul>
+            </li>
           <%# Edit, create and delete links and buttons for column and cards %>
-          <%= link_to "Create Card", new_card_path(:column => column), class:"add-card-link" %>
-          <%= link_to 'Change Column Name', edit_kanban_column_path(column, :board => @board.id), class:"add-card-link"%>
-          <%= button_to "Delete Column", kanban_column_path(column), method: :delete, form: { data: { turbo_confirm: 'This will permanently delete the column. Are you sure?' } }, class:"btn btn-warning" %>
-        </ul>
-      </div>
+          <%= link_to "Create Card", new_card_path(:column => column.id), class:"btn btn-primary btn-sm mx-1" %>
+          <%= link_to 'Edit Column', edit_kanban_column_path(column, :board => @board.id), class:"btn btn-info btn-sm mx-1"%>
+          <%= button_to "Delete Column", kanban_column_path(column), method: :delete, class:"btn btn-danger btn-sm mt-2" %>
+          </div>
+        </div>
+      </ul>
     <% end %>
   </div>
   
-</div>
-<div class="d-flex justify-content-center">
-  <%= link_to 'Add Someone', new_other_board_path(:board => @board.id), class:"board-container" %>
-  <%# Edit, create and delete links and buttons for board and cards %>
-  <%= link_to 'Add Column', new_kanban_column_path(:board => @board.id), class:"board-container" %>
-  <%= link_to "Change Board Name", edit_kanban_board_path, class:"board-container" %>
-</div>
+  <br>
+  <div class="h-100 d-flex align-items-center justify-content-center">
+    <%# Edit, create and delete links and buttons for board and cards %>
+    <%= link_to 'Add Column', new_kanban_column_path(:board => @board.id), class:"btn btn-secondary mx-3" %>
+    <%= link_to "Edit Board", edit_kanban_board_path, class:"btn btn-info mx-3" %>
+    <%= button_to "DELETE BOARD", @board, method: :delete, class:"btn btn-danger mx-3" %>
+  </div>
 
-<div class="d-flex justify-content-center">
-  <%= button_to "DELETE BOARD", @board, method: :delete, form: { data: { turbo_confirm: 'This will permanently delete the board. Are you sure?' } } , class:"btn btn-warning" %>
-</div>
-
-
-  
 </body>
 </html>
-

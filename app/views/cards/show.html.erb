@@ -47,7 +47,7 @@
   <%# links and buttoms %>
   <%= link_to 'Edit Card', edit_card_path %>
   <%= link_to 'Back to board', kanban_board_path(@board)%>
-  <%= button_to "DELETE CARD", @card, method: :delete, class: 'btn btn-warning' ,form: { data: { turbo_confirm: 'This will permanently delete the card. Are you sure?' } } %>
+  <%= button_to "DELETE CARD", @card, method: :delete, class: 'btn btn-danger' ,form: { data: { turbo_confirm: 'This will permanently delete the card. Are you sure?' } } %>
 </div>
 
 

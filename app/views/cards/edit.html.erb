@@ -17,14 +17,22 @@
         </ul>
       </div>
     <% end %>
-    
-    <%= form.label 'Name', style: "display: block" %>
-    <%= form.text_field :name %>
-    <%= form.label 'Start', style: "display: block" %>
-    <%= form.date_field :start_date %>
-    <%= form.label 'Due', style: "display: block" %>
-    <%= form.date_field :due_date %>
-    <%= form.submit 'Edit Card' %>
+
+    <h3>Edit Card</h3>
+    <div class="form-group">
+      <%= form.label 'Name', style: "display: block" %>
+      <%= form.text_field :name, class:"form-control", style:"width:300px" %>
+      <%= form.label 'Description', style: "display: block" %>
+      <%= form.text_area :description, class:"form-control", style:"width:300px" %>
+      <%= form.label 'Start', style: "display: block" %>
+      <%= form.date_field :start_date %>
+      <%= form.label 'Due', style: "display: block" %>
+      <%= form.date_field :due_date %>
+      <div class="form-group">
+        <%= form.submit 'Edit Card', class:"btn btn-primary mt-3" %>
+      </div>
+    </div>
+
 
   <% end %>
   

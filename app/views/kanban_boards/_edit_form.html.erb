@@ -1,5 +1,8 @@
 <%= form_with(model: board) do |f|%>
-  <%= f.label 'Board Name', style: "display: block" %>
-  <%= f.text_field :name %>
-  <%= f.submit 'Edit Name'%>
+<div class="form-group">
+  <h1>Board Name</h1>
+  <%= f.text_field :name, class:"form-control", style:"width:300px" %>
+  <%= f.submit 'Edit Name', class:"btn btn-primary mt-3"%>
+</div>
+
 <% end %>

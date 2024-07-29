@@ -1,4 +1,4 @@
-<div class="card mb-3 p-3 bg-dark text-white">
+<div class="card mb-3 p-3 bg-dark text-white border-light">
   <div class="card-body">
     <p><%= comment.comment %></p>
     
@@ -6,27 +6,27 @@
       Likes: <%= comment.likes.count %>
     </div>
     
-    <div class="mb-2">
+    <div class="d-flex mb-2">
       <% if comment.liked?(comment, current_user) %>
-        <%= button_to 'Unlike', unlike_path(comment_id: comment.id), method: 'delete', class: 'btn btn-warning btn-sm' %>
+        <%= button_to 'Unlike', unlike_path(comment_id: comment.id), method: 'delete', class: 'btn btn-warning btn-sm me-2' %>
       <% else %>
-        <%= button_to 'Like', like_path(comment_id: comment.id), method: 'put', class: 'btn btn-success btn-sm' %>
+        <%= button_to 'Like', like_path(comment_id: comment.id), method: 'put', class: 'btn btn-success btn-sm me-2' %>
+      <% end %>
+
+      <% if comment.user_id == current_user.id %>
+        <%= link_to 'Edit Comment', edit_comment_path(comment), class: 'btn btn-info btn-sm me-2' %>
+        <%= button_to 'Delete Comment', comment_path(comment), method: :delete, class: 'btn btn-danger btn-sm', data: { turbo_confirm: 'This will permanently delete the comment. Are you sure?' } %>
       <% end %>
     </div>
-
-    <% if comment.user_id == current_user.id %>
-      <div class="mb-2">
-        <%= link_to 'Edit Comment', edit_comment_path(comment), class: 'btn btn-info btn-sm' %>
-        <%= button_to 'Delete Comment', comment_path(comment), method: :delete, class: 'btn btn-warning btn-sm', data: { turbo_confirm: 'This will permanently delete the comment. Are you sure?' } %>
-      </div>
-    <% end %>
     
     <div data-controller="hide">
       <div hidden data-hide-target="reply">
         <%= render "comments/reply_form", card: Card.find(comment.card_id), parent_id: comment.id %>
       </div>
-      <button data-hide-target="button" data-action="hide#unhide" class="btn btn-secondary btn-sm">Reply</button>
-      <button hidden data-hide-target="discardbutton" data-action="hide#hide" class="btn btn-secondary btn-sm">Discard Reply</button>
+      <div class="d-flex mt-2">
+        <button data-hide-target="button" data-action="hide#unhide" class="btn btn-secondary btn-sm me-2">Reply</button>
+        <button hidden data-hide-target="discardbutton" data-action="hide#hide" class="btn btn-secondary btn-sm">Discard Reply</button>
+      </div>
     </div>
     
     <% comment.replies.each do |reply| %>
