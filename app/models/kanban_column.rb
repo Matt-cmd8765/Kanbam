@@ -1,9 +1,9 @@
 class KanbanColumn < ApplicationRecord
+  belongs_to :kanban_board
+
   validates :name, presence: true
-  validates :kanban_board_id, presence: true, on: :create
 
   has_many :cards, dependent: :destroy
-  belongs_to :kanban_board
 
   # from the ranked model gem https://github.com/brendon/ranked-model
   include RankedModel

@@ -60,7 +60,7 @@ class KanbanBoardsController < ApplicationController
   private
 
   def kanban_board_params
-    params.require(:kanban_board).permit(:name, :user_id, kanban_columns_attributes: [:name, :_destroy])
+    params.require(:kanban_board).permit(:name, :user_id, kanban_columns_attributes: [:id, :name, :_destroy])  
   end
 
   def kanban_update_name_params
