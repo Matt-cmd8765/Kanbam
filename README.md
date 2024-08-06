@@ -28,5 +28,12 @@ This [tutorial](https://medium.com/swlh/how-to-add-a-simple-like-button-to-your-
 ## Subscribers
 Users can subsrcibe to other boards. The assocaition is a have many through association through the other_boards model. The model contains the subscriber (user) id and kanban_board_id. 
 
+## CSS
+CSS uses Bootstrap v5.3 
+
+## Admin / User access
+Users simply need to be logged in to access and modify boards. There are currently no restrictions on users. 
+
+
 
 
